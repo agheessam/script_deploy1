@@ -4,15 +4,14 @@ FROM ubuntu:latest
 # Set a working directory
 WORKDIR /app
 
-# Install packages, e.g., Apache
-RUN apt-get update && apt-get install -y apache2
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+# Install packages: nginx
+RUN apt-get update && apt-get install -y nginx
 
-#add the file to directory
+# Add your website files to nginx's default html directory
 ADD . /var/www/html
 
 # Expose port 80
 EXPOSE 80
 
-# Start the Apache service
-ENTRYPOINT ["apachectl", "-D", "FOREGROUND"]
+# Start nginx in the foreground
+CMD ["nginx", "-g", "daemon off;"]
