@@ -6,6 +6,7 @@ WORKDIR /app
 
 # Install packages, e.g., Apache
 RUN apt-get update && apt-get install -y apache2
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 #add the file to directory
 ADD . /var/www/html
